@@ -3,9 +3,10 @@ Description=Bro Atomic Rotate
 After=network.target
 
 [Service]
-#User=bro
-#Group=bro
+User=bro
+Group=bro
 Nice=10
+Environment="PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/opt/bro/bin"
 ExecStart=/usr/local/bin/bro-atomic-rotate
 Restart=on-failure
 RestartSec=10s
