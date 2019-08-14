@@ -13,7 +13,7 @@ import time
 # common compression extensions now can't hurt.
 COMPRESSED_EXTENSIONS = ["gz", 'bz2', 'lz', 'lz4']
 
-# Since I'm using 'broctl config' instead of the broctl api some things are a
+# Since I'm using 'zeekctl config' instead of the zeekctl api some things are a
 # little harder than they should be
 TRUE_VALUES = ['1', 'on', 'true', 'yes']
 
@@ -21,10 +21,10 @@ def log(msg):
     sys.stdout.write(msg + "\n")
     sys.stdout.flush()
 
-def broctl_config():
-    #could do this using broctl in python directly, but this is more portable
+def zeekctl_config():
+    #could do this using zeekctl in python directly, but this is more portable
     cfg = {}
-    out = subprocess.check_output(["broctl", "config"]).decode('utf-8')
+    out = subprocess.check_output(["zeekctl", "config"]).decode('utf-8')
     for line in out.splitlines():
         if ' = ' not in line:
             continue
@@ -32,7 +32,7 @@ def broctl_config():
         cfg[k] = v
 
     return cfg
-CFG = broctl_config()
+CFG = zeekctl_config()
 
 def same_dev(p1, p2):
     d1 = os.stat(p1).st_dev
